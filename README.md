@@ -33,7 +33,7 @@ Which (if any) progressive web app feature(s) does your app support?
 
 
 ## Mockup images
-![mockup image](/mockup_image.png)
+![mockup image](mockup_image.png)
 
 See [link](https://drive.google.com/file/d/1BvZ7-dE-7PnKUyst7JXlUA_u8xhhkbsj/view?usp=sharing) for PDF copy of the mockup images.
 
