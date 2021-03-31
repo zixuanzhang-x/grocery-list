@@ -4,14 +4,15 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 ## App Info:
 
-* Team Name: TODO
-* App Name: TODO
+* Team Name: Lemon Squeezy
+* App Name: Grocery List
 * App Link: <https://TODO.firebaseapp.com/>
 
 ### Students
 
-* First Last, x500@umn.edu
-* ...
+* Zixuan Zhang, zhan7230@umn.edi
+* Zhaoyu Wang, wang9535@umn.edu
+* Ziying Cheng, cheng904@umn.edu
 
 
 ## Key Features
@@ -32,10 +33,10 @@ Which (if any) progressive web app feature(s) does your app support?
 
 
 ## Mockup images
+![mockup image](/mockup_image.png)
 
-**[Add images/photos that show your mockup](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
+See [link](https://drive.google.com/file/d/1BvZ7-dE-7PnKUyst7JXlUA_u8xhhkbsj/view?usp=sharing) for PDF copy of the mockup images.
 
-![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
 
 
 ## Testing Notes
