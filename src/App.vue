@@ -1,8 +1,16 @@
 <template>
   <div id="app">
-    <Navbar />
-    <Sidebar />
-    <router-view />
+    <div class="row">
+      <div v-if="user" class="col-12">
+        <Navbar />
+      </div>
+      <div v-if="user" class="col-4">
+        <Sidebar />
+      </div>
+      <div class="col">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,9 +18,23 @@
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 
+import { auth } from "@/firebaseConfig.js";
+
 export default {
   name: "App",
   components: { Navbar, Sidebar },
+  data() {
+    return {
+      user: null,
+    }
+  },
+  beforeCreate() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  },
 };
 </script>
 
