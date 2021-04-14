@@ -1,14 +1,12 @@
 <template>
   <div id="app">
+    <Navbar />
     <div class="row">
-      <div v-if="user" class="col-12">
-        <Navbar />
-      </div>
-      <div v-if="user" class="col-4">
+      <div class="col-4">
         <Sidebar />
       </div>
-      <div class="col">
-        <router-view />
+      <div>
+        <router-view :user="user" />
       </div>
     </div>
   </div>
@@ -26,7 +24,7 @@ export default {
   data() {
     return {
       user: null,
-    }
+    };
   },
   beforeCreate() {
     auth.onAuthStateChanged((user) => {
@@ -38,11 +36,4 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-</style>
+<style></style>
