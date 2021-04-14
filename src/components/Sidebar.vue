@@ -60,6 +60,4 @@ export default {};
   background-color: white;
   font-size: 16px;
 }
-
-
 </style>
