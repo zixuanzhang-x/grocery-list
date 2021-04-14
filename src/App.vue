@@ -6,7 +6,7 @@
         <Sidebar />
       </div>
       <div>
-        <router-view />
+        <router-view :user="user" />
       </div>
     </div>
   </div>
