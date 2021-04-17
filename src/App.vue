@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar v-if="user" @signOut="user = null" />
     <div class="row">
-      <div class="col-4">
-        <Sidebar />
+      <Sidebar />
+      <div
+        v-if="user && windowWidth >= 768"
+        class="col"
+        id="menu-container"
+      >
+        <Menu />
       </div>
-      <div>
+      <div class="col">
         <router-view :user="user" />
       </div>
     </div>
@@ -15,15 +20,17 @@
 <script>
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import Menu from "@/components/Menu";
 
 import { auth } from "@/firebaseConfig.js";
 
 export default {
   name: "App",
-  components: { Navbar, Sidebar },
+  components: { Navbar, Sidebar, Menu },
   data() {
     return {
       user: null,
+      windowWidth: window.innerWidth,
     };
   },
   beforeCreate() {
@@ -33,7 +40,18 @@ export default {
       }
     });
   },
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
 };
 </script>
 
-<style></style>
+<style>
+#menu-container {
+  max-width: 320px;
+  min-width: 320px;
+  padding-right: 0px;
+}
+</style>
