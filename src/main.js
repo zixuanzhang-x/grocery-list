@@ -17,16 +17,6 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-// eslint-disable-next-line no-unused-vars
-export const loadedGoogleMapsAPI = new Promise((resolve, reject) => {
-  window['GoogleMapsInit'] = resolve
-  let GoogleMap = document.createElement('script')
-  GoogleMap.setAttribute('src',
-  `https://maps.googleapis.com/maps/api/js?key=${process.env.VUE_APP_GOOGLE_MAPS_API_KEY}&callback=GoogleMapsInit&region=US&libraries=places`)
-
-  document.body.appendChild(GoogleMap)
-})
-
 let app; // for authentication
 auth.onAuthStateChanged(() => {
   // for authentication

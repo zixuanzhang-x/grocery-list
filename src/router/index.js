@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 import Home from "@/components/Home.vue";
 import Recipe from "@/components/Recipe.vue";
-import addStore from "@/components/addStore.vue";
+import Store from "@/components/Store.vue";
 import Plan from "@/components/Plan.vue";
 
 import { auth } from "@/firebaseConfig.js";
@@ -26,8 +26,8 @@ const routes = [
   },
   {
     path: "/store",
-    name: "addStore",
-    component: addStore,
+    name: "Store",
+    component: Store,
     meta: {
       requiresAuth: true,
     }

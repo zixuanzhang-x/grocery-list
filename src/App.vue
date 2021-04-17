@@ -54,18 +54,4 @@ export default {
   min-width: 320px;
   padding-right: 0px;
 }
-
-.pac-item {
-  padding: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.pac-item:hover {
-  background-color: #ececec;
-}
-
-.pac-item-query {
-  font-size: 14px;
-}
 </style>
