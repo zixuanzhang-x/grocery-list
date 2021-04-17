@@ -20,16 +20,25 @@ const routes = [
     path: "/recipe",
     name: "Recipe",
     component: Recipe,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/store",
     name: "Store",
     component: Store,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/plan",
     name: "Plan",
     component: Plan,
+    meta: {
+      requiresAuth: true,
+    }
   },
 ];
 
