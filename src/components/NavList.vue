@@ -28,14 +28,16 @@
       <b-list-group-item>
         <b-icon icon="cart3"></b-icon>
         Shopping Plans
-        <b-icon v-if="visible" v-b-toggle.collapse-plan icon="chevron-down"></b-icon>
+        <b-icon
+          v-if="visible"
+          v-b-toggle.collapse-plan
+          icon="chevron-down"
+        ></b-icon>
         <b-icon v-else v-b-toggle.collapse-plan icon="chevron-left"></b-icon>
         <p></p>
         <b-collapse id="collapse-plan" v-model="visible">
-          <b-list-group flush>
-            <b-list-group-item>My Shopping Plan 1</b-list-group-item>
-            <b-list-group-item>Plan 2</b-list-group-item>
-            <b-list-group-item>Plan 3</b-list-group-item>
+          <b-list-group flush v-for="plan in plans" :key="plan.id">
+            <b-list-group-item :to="'/plan/' + plan.id">{{ plan.plan_name }}</b-list-group-item>
           </b-list-group>
         </b-collapse>
       </b-list-group-item>
@@ -44,13 +46,20 @@
 </template>
 
 <script>
+import { db } from "../firebaseConfig.js";
+
 export default {
-    name: "NavList",
-    data() {
-        return {
-            visible: true
-        }
-    }
+  name: "NavList",
+  data() {
+    return {
+      visible: true,
+      plans: [],
+    };
+  },
+
+  firestore: {
+    plans: db.collection("plans"),
+  },
 };
 </script>
 

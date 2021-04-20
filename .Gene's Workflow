@@ -1,0 +1,47 @@
+TODO - 0417
+    DONE:get dynamic route params id  √
+    DONE:request specific plan_id and read stuff under plan collection √
+    DONE:read stores subcollections, v-for get all store names  √
+    DONE:read items for specific store (no items in db so far)
+    
+    TODO:db field change: items -> ingredients
+    TODO:db field change: store_geo -> store_addr
+    add a button to alter plan_date on top of the plan page -> BV datepicker
+    add a progress bar
+    add a map for each store tab
+    (https://medium.com/@glavecoding/google-map-api-in-vue-js-925c7052a9b6)
+    enable to create new item for each store
+    
+
+TODO after Merge
+    when add a new store, the new store will display on tab?
+    submit to add new ingredients to this store_add
+    add a button to switch back this new store
+
+TODO - 0420
+DONE: click 'new' route to /store
+TODO: after adding items, auto route to newest store tab
+TODO: store tab limit the store name characters
+
+DONE: retrieve items for each store by status
+    2 sections for items, first false, then true
+    false section remain checkbox uncheck
+    true section remain checkbox check
+DONE: click false item to alter status true
+DONE: click true item to alter status false
+TODO: check all in once ??
+DONE: progress bar css
+DONE: inline section for bought and not buy
+DONE: underline for bought text
+DONE: add a datepicker from BV to set/modify plan_date for the plan
+    DONE: placeholder if no plan_date value yet(null)
+    DONE: date type update: timestamp -> string
+
+TODO: add a map for each store ???
+DONE: col layout for plan header 
+
+
+
+FIXME: initial active tab do not request db so far
+FIXME: extend right secions according to items
+
