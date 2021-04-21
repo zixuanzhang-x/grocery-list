@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+
 import Home from "@/components/Home.vue";
 import Recipe from "@/components/Recipe.vue";
 import addStore from "@/components/addStore.vue";
@@ -25,7 +26,7 @@ const routes = [
     }
   },
   {
-    path: "/store",
+    path: "/plan/:id/store",
     name: "addStore",
     component: addStore,
     meta: {
@@ -33,7 +34,7 @@ const routes = [
     }
   },
   {
-    path: "/plan",
+    path: "/plan/:id",
     name: "Plan",
     component: Plan,
     meta: {
