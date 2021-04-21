@@ -200,7 +200,8 @@ export default {
         store_address: this.storeVicinity,
       }
       db.collection('plans').doc(this.planId).collection('stores').add(newStore)
-      // TODO: redirect to this store tab
+      // redirect to this store tab
+      this.$route.push({name: 'Plan', params: {id: this.planId}})
     },
   },
 }
