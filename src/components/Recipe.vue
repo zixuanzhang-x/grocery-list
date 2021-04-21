@@ -1,13 +1,15 @@
 <template>
   <div class="recipe">
+    <div class="container text-center">
+      <h1>
+        <b-icon icon="brightness-high" class="rounded-circle bg-warning p-2"></b-icon>
+        Eureka!
+      </h1>
+    </div>
+    <hr />
     <b-card-group deck>
       <div v-for="(recipe, index) in recipes" :key="index" class="b-card">
-        <b-card
-          no-body
-          img-src="https://images.unsplash.com/photo-1579887829114-282b4fa31072?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-          img-alt="Image"
-          img-top
-        >
+        <b-card no-body :img-src="recipe.image" img-alt="Image" img-top>
           <b-card-body>
             <b-card-title>{{ recipe.name }}</b-card-title>
             <b-card-sub-title class="mb-2">{{
@@ -107,78 +109,13 @@
 </template>
 
 <script>
-// import axios from "axios";
+import recipesJson from "@/assets/recipes.json";
 
 export default {
   name: "Recipe",
   data() {
     return {
-      recipes: [
-        {
-          name: "Baked Shrimp Scampi",
-          source: "Ina Garten: Barefoot Contessa Back to Basics",
-          comments:
-            "Modified by reducing butter and salt.  Substituted frozen shrimp instead of fresh 12-15 count (butterflied, tails on).",
-          calories: 2565,
-          fat: 159,
-          satfat: 67,
-          carbs: 76,
-          fiber: 4,
-          sugar: 6,
-          protein: 200,
-          instructions:
-            "Preheat the oven to 425 degrees F.\r\n\r\nDefrost shrimp by putting in cold water, drain. Place the shrimp in serving dish (9x13 or 2 quart casserole) and toss gently with the olive oil, wine, 1 teaspoons salt, and 1 teaspoon pepper. Allow to sit at room temperature while you make the butter and garlic mixture.\r\n\r\nIn a small bowl, mash the softened butter with the garlic, shallots, parsley, rosemary, red pepper flakes, lemon zest, lemon juice, egg yolk, panko, 1/2 teaspoon salt, and 1/4 teaspoon of pepper until combined.\r\n\r\nSpread the butter mixture evenly over the shrimp. Bake for 10 to 12 minutes until hot and bubbly. If you like the top browned, place under a broiler for 1-3 minutes (keep an eye on it). Serve with lemon wedges and French bread.\r\n\r\nNote: if using fresh shrimp, arrange for presentation. Starting from the outer edge of a 14-inch oval gratin dish, arrange the shrimp in a single layer cut side down with the tails curling up and towards the center of the dish. Pour the remaining marinade over the shrimp. ",
-          ingredients: [
-            "2/3 cup panko\r",
-            "1/4 teaspoon red pepper flakes\r",
-            "1/2 lemon, zested and juiced\r",
-            "1 extra-large egg yolk\r",
-            "1 teaspoon rosemary, minced\r",
-            "3 tablespoon parsley, minced\r",
-            "4 clove garlic, minced\r",
-            "1/4 cup shallots, minced\r",
-            "8 tablespoon unsalted butter, at room temperature\r",
-            "2 tablespoon dry white wine\r",
-            "Freshly ground black pepper\r",
-            "Kosher salt\r",
-            "3 tablespoon olive oil\r",
-            "2 pound frozen shrimp",
-          ],
-          tags: ["seafood", "shrimp", "main"],
-        },
-        {
-          name: "Baked Shrimp Scampi 2",
-          source: "Ina Garten: Barefoot Contessa Back to Basics",
-          comments:
-            "Modified by reducing butter and salt.  Substituted frozen shrimp instead of fresh 12-15 count (butterflied, tails on).",
-          calories: 2565,
-          fat: 159,
-          satfat: 67,
-          carbs: 76,
-          fiber: 4,
-          sugar: 6,
-          protein: 200,
-          instructions:
-            "Preheat the oven to 425 degrees F.\r\n\r\nDefrost shrimp by putting in cold water, drain. Place the shrimp in serving dish (9x13 or 2 quart casserole) and toss gently with the olive oil, wine, 1 teaspoons salt, and 1 teaspoon pepper. Allow to sit at room temperature while you make the butter and garlic mixture.\r\n\r\nIn a small bowl, mash the softened butter with the garlic, shallots, parsley, rosemary, red pepper flakes, lemon zest, lemon juice, egg yolk, panko, 1/2 teaspoon salt, and 1/4 teaspoon of pepper until combined.\r\n\r\nSpread the butter mixture evenly over the shrimp. Bake for 10 to 12 minutes until hot and bubbly. If you like the top browned, place under a broiler for 1-3 minutes (keep an eye on it). Serve with lemon wedges and French bread.\r\n\r\nNote: if using fresh shrimp, arrange for presentation. Starting from the outer edge of a 14-inch oval gratin dish, arrange the shrimp in a single layer cut side down with the tails curling up and towards the center of the dish. Pour the remaining marinade over the shrimp. ",
-          ingredients: [
-            "2/3 cup panko\r",
-            "1/4 teaspoon red pepper flakes\r",
-            "1/2 lemon, zested and juiced\r",
-            "1 extra-large egg yolk\r",
-            "1 teaspoon rosemary, minced\r",
-            "3 tablespoon parsley, minced\r",
-            "4 clove garlic, minced\r",
-            "1/4 cup shallots, minced\r",
-            "8 tablespoon unsalted butter, at room temperature\r",
-            "2 tablespoon dry white wine\r",
-            "Freshly ground black pepper\r",
-            "Kosher salt\r",
-            "3 tablespoon olive oil\r",
-            "2 pound frozen shrimp",
-          ],
-          tags: ["seafood", "shrimp", "main"],
-        },
-      ],
+      recipes: recipesJson,
     };
   },
 };
@@ -194,6 +131,7 @@ export default {
 @media screen and (min-width: 1100px) {
   .b-card {
     max-width: 50%;
+    padding: 10px;
   }
 }
 </style>
