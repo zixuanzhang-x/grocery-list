@@ -33,7 +33,7 @@
                   placeholder="Enter a store name"></b-form-input>
               </b-col>
               <b-col sm="6">
-                <b-button variant="outline-success" @click="addStore">Add new store</b-button>
+                <b-button variant="outline-success" :disabled="!disableAdding" @click="addStore">Add new store</b-button>
               </b-col>
             </b-row>
             <div ref="map" style="weight:600px;height:400px;margin-top:16px"></div>
@@ -50,7 +50,7 @@ import { loadedGoogleMapsAPI } from '@/main'
 import { db } from '@/firebaseConfig'
 
 export default {
-  name: 'addStore',
+  name: 'AddStore',
   props: ['planId'],
   data() {
     return {
@@ -71,6 +71,11 @@ export default {
       ],
     }
   },
+  computed: {
+    disableAdding() {
+      return this.storeName&&this.storeVicinity
+    }
+  },
   created() {
     if (!('geolocation' in navigator)) {
       this.errMsg = 'Geolocation is not available.'
@@ -85,7 +90,7 @@ export default {
         this.stores = JSON.parse(JSON.stringify(res.results))
         this.displayGoogleMaps()
       }).catch(err => {
-        this.errMsg = err
+        this.errMsg = err.message
       })
     },
     displayGoogleMaps() {
