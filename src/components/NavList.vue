@@ -21,10 +21,6 @@
         <b-icon icon="collection"></b-icon>
         Template
       </b-list-group-item>
-      <b-list-group-item to="/store">
-        <b-icon icon="house-door"></b-icon>
-        Store
-      </b-list-group-item>
       <b-list-group-item>
         <b-icon icon="cart3"></b-icon>
         Shopping Plans

@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 
 import Home from "@/components/Home.vue";
 import Recipe from "@/components/Recipe.vue";
+import Calendar from "@/components/Calendar.vue";
+import History from "@/components/History.vue";
 import addStore from "@/components/addStore.vue";
 import Plan from "@/components/Plan.vue";
 
@@ -21,6 +23,22 @@ const routes = [
     path: "/recipe",
     name: "Recipe",
     component: Recipe,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: Calendar,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: "/history",
+    name: "History",
+    component: History,
     meta: {
       requiresAuth: true,
     }
@@ -56,7 +74,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !auth.currentUser) {
     next("/");
   } else if (!requiresAuth && auth.currentUser) {
-    next("/store");
+    next("/recipe");
   } else {
     next();
   }
