@@ -12,14 +12,14 @@
                                         <template #append>
                                             <b-button
                                                 variant="outline-success"
-                                                v-b-tooltip.hover title="Add 0.5 kg/time"
+                                                v-b-tooltip.hover title="Add 0.5 unit/time"
+                                                :pressed="!disableReduce(ingredient)"
                                                 @click="add(ingredient)"
                                             >
                                                 <b-icon icon="plus-circle"></b-icon>
                                             </b-button>
                                             <b-button 
                                                 variant="outline-danger" 
-                                                v-b-tooltip.hover title="Reduce 0.5 kg/time"
                                                 :disabled="disableReduce(ingredient)"
                                                 @click="reduce(ingredient)"
                                             >
@@ -60,8 +60,8 @@
         <!-- shopping card modal -->
         <b-modal :id="modalName" ref="modal" title="You have added the following ingredients:" hide-footer>
             <b-row cols="2">
-                <b-col v-for="(unit, ingredient) in cartIngredient" :key="ingredient" class="mb-3">
-                    <b-input-group v-if="unit !== 0">
+                <b-col v-for="(unit, ingredient) in displayInCart" :key="ingredient" class="mb-3">
+                    <b-input-group>
                         <b-form-input :value="compute(unit, ingredient)" disabled></b-form-input>
                     </b-input-group>
                 </b-col>
@@ -111,6 +111,10 @@ export default {
         },
         modalName() {
             return this.storeName + '-shopping-cart-modal'
+        },
+        displayInCart() {
+            // eslint-disable-next-line no-unused-vars
+            return Object.fromEntries(Object.entries(this.cartIngredient).filter(([key, value]) => value !== 0))
         }
     },
     watch: {
@@ -123,7 +127,7 @@ export default {
             this.dismissCountDown = dismissCountDown
         },
         compute(unit, ingredient) {
-            return ingredient + " * " + unit + 'kg'
+            return ingredient + " * " + unit
         },
         add(ingredient) {
             this.addedIngredients[ingredient] += 0.5
