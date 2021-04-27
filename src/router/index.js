@@ -6,7 +6,6 @@ import Home from "@/components/Home.vue";
 import Recipe from "@/components/Recipe.vue";
 import Calendar from "@/components/Calendar.vue";
 import History from "@/components/History.vue";
-import addStore from "@/components/addStore.vue";
 import Plan from "@/components/Plan.vue";
 
 import { auth } from "@/firebaseConfig.js";
@@ -39,14 +38,6 @@ const routes = [
     path: "/history",
     name: "History",
     component: History,
-    meta: {
-      requiresAuth: true,
-    }
-  },
-  {
-    path: "/plan/:id/store",
-    name: "addStore",
-    component: addStore,
     meta: {
       requiresAuth: true,
     }

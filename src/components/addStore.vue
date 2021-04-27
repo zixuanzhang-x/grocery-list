@@ -205,6 +205,7 @@ export default {
         address: this.storeVicinity,
         items: {},
       }
+      console.log(stores)
       db.collection('plans').doc(this.planId).update({
           stores: stores
       })
