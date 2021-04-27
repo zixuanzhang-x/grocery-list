@@ -78,11 +78,11 @@ import Ingredient from './Ingredient'
 export default {
     components: { Ingredient },
     name: 'addIngredient',
-    props: ['planId', 'storeId'],
+    props: ['planId', 'storeName'],
     data() {
         return {
             categories: [],
-            items: [],
+            plan:[],
             dismissSecs: 5,
             dismissCountDown: 0,
             cartIngredient: '',
@@ -92,9 +92,7 @@ export default {
     firestore() {
         return {
             categories: db.collection('categories').orderBy('category_name'),
-            items: db.collection('plans').doc(this.planId)
-                     .collection('stores').doc(this.storeId)
-                     .collection('items'),
+            plan: db.collection('plans').doc(this.planId)
         }
     },
     computed: {
@@ -140,38 +138,33 @@ export default {
                 this.dismissCountDown = this.dismissSecs
                 return
             }
-
-            const added = JSON.parse(JSON.stringify(this.items)).map(el => el.item_name)
+            const store = this.plan.stores[this.storeName]
+            const items = store.items
+            const added = Object.keys(items)
             const plan = ingredients.filter(el => {
                 if (this.cartIngredient[el] !== 0) {
                     return el
                 }
             })
-            const addedNameIdMap = {}, addedNameUnitMap = {}
-            for (var i = 0; i < this.items.length; i++) {
-                addedNameIdMap[this.items[i].item_name] = this.items[i].id
-                addedNameUnitMap[this.items[i].item_name] = this.items[i].item_unit
-            }
             /**
              * update unit if planed ingredient already in store;
              * otherwise create new item
              */
+            const stores = this.plan.stores
             plan.forEach(el => {
                 if (added.includes(el)) {
-                    db.collection('plans').doc(this.planId)
-                    .collection('stores').doc(this.storeId)
-                    .collection('items').doc(addedNameIdMap[el]).update({
-                        item_unit: this.cartIngredient[el] + addedNameUnitMap[el]
+                    stores[this.storeName].items[el]['quantity'] = this.cartIngredient[el] + items[el]['quantity']
+                    db.collection('plans').doc(this.planId).update({
+                        stores: stores
                     })
                 } else {
-                    const newItem = {
-                        item_name: el,
-                        item_unit: this.cartIngredient[el],
-                        item_status: false,
+                    stores[this.storeName].items[el] = {
+                        quantity: this.cartIngredient[el],
+                        isBought: false,
                     }
-                    db.collection('plans').doc(this.planId)
-                    .collection('stores').doc(this.storeId)
-                    .collection('items').add(newItem)
+                    db.collection('plans').doc(this.planId).update({
+                        stores: stores
+                    })
                 }
             });
             // TODO: redirect to this store plan tab

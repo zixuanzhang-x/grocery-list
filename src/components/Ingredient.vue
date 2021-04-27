@@ -36,8 +36,6 @@ export default {
     data() {
         return {
             category: '',
-            unit: '',
-            unitState: null,
         }
     },
     firestore() {

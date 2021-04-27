@@ -84,6 +84,11 @@ export default {
     this.loadingLocation = true
     getCurrentPosition(this.setPosition, this.setErrMsg)
   },
+  firestore() {
+    return {
+      plan: db.collection('plans').doc(this.planId)
+    }
+  },
   methods: {
     findNearbyStore() {
       getNearbyStore(this.latitude, this.longitude, this.radius*1000).then(res => {
@@ -195,11 +200,14 @@ export default {
       this.errMsg = err.message
     },
     addStore() {
-      const newStore = {
-        store_name: this.storeName,
-        store_address: this.storeVicinity,
+      const stores = this.plan.stores
+      stores[this.storeName] = {
+        address: this.storeVicinity,
+        items: {},
       }
-      db.collection('plans').doc(this.planId).collection('stores').add(newStore)
+      db.collection('plans').doc(this.planId).update({
+          stores: stores
+      })
       // redirect to this store tab
       this.$route.push({name: 'Plan', params: {id: this.planId}})
     },
