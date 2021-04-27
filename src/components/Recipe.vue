@@ -2,7 +2,10 @@
   <div class="recipe">
     <div class="container text-center">
       <h1>
-        <b-icon icon="brightness-high" class="rounded-circle bg-warning p-2"></b-icon>
+        <b-icon
+          icon="brightness-high"
+          class="rounded-circle bg-warning p-2"
+        ></b-icon>
         Eureka!
       </h1>
     </div>
@@ -98,9 +101,46 @@
           </b-card-body>
 
           <b-card-body>
-            <b-button variant="primary" block
+            <b-button v-b-modal="'modal-' + index" variant="primary" block
               >Add All Ingredients to plan</b-button
             >
+            <b-modal
+              :id="'modal-' + index"
+              title="Add ingredients to a store in a plan"
+              hide-footer
+            >
+              <b-form @submit.prevent="addIngredients(recipe.ingredients, index)">
+                <b-form-group
+                  id="plan-select-label"
+                  label="Select Plan:"
+                  label-for="plan-select"
+                >
+                  <b-form-select
+                    id="plan-select"
+                    v-model="selectedPlanId"
+                    :options="planOptions"
+                    required
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-form-group
+                  id="store-select-label"
+                  v-if="selectedPlanId"
+                  label="Select Store:"
+                  label-for="store-select"
+                >
+                  <b-form-select
+                    id="store-select"
+                    v-if="selectedPlanId"
+                    v-model="selectedStore"
+                    :options="storeOptions"
+                    required
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-button type="submit" variant="primary">Submit</b-button>
+              </b-form>
+            </b-modal>
           </b-card-body>
         </b-card>
       </div>
@@ -111,12 +151,74 @@
 <script>
 import recipesJson from "@/assets/recipes.json";
 
+import { db } from "../firebaseConfig.js";
+
+const plans = db.collection("plans");
+
 export default {
   name: "Recipe",
+  props: ["user"],
   data() {
     return {
       recipes: recipesJson,
+      plans: null,
+      selectedPlanId: "",
+      selectedStore: "",
     };
+  },
+  computed: {
+    planOptions() {
+      let options = [];
+      if (this.plans) {
+        options = this.plans.map((plan) => {
+          return {
+            value: plan.id,
+            text: plan.name,
+          };
+        });
+      }
+      return options;
+    },
+    storeOptions() {
+      let options = [];
+      if (this.selectedPlanId && this.plans) {
+        const stores = this.plans.filter(plan => plan.id == this.selectedPlanId)[0].stores;
+        for (const store in stores) {
+          options.push({
+            value: store,
+            text: store,
+          });
+        }
+      }
+      return options;
+    },
+  },
+  methods: {
+    addIngredients(ingredients, index) {
+      // console.log(ingredients)
+      const plan = this.plans.filter(plan => plan.id == this.selectedPlanId)[0];
+
+      ingredients.forEach((ingredient) => {
+        plan.stores[this.selectedStore].items[ingredient] = {
+          quantity: 1,
+          isBought: false,
+        }
+      })
+      
+      db.collection("plans").doc(this.selectedPlanId).set(plan)
+
+      this.$bvModal.hide('modal-' + index)
+    },
+  },
+  watch: {
+    user: {
+      immediate: true,
+      handler(user) {
+        if (user) {
+          this.$bind("plans", plans.where("uid", "==", user.uid));
+        }
+      },
+    },
   },
 };
 </script>

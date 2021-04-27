@@ -51,7 +51,7 @@
                       <span>{{ item }}</span>
                       {{ " " }}
                       <b-badge variant="success">{{
-                        itemInfo.quantity + " kg"
+                        itemInfo.quantity + " unit"
                       }}</b-badge>
                     </b-form-checkbox>
                   </div>
@@ -68,7 +68,7 @@
                     >
                       <span class="bought">{{ item }}</span>
                       {{ " " }}
-                      <b-badge>{{ itemInfo.quantity }}</b-badge>
+                      <b-badge>{{ itemInfo.quantity + " unit"}}</b-badge>
                     </b-form-checkbox>
                   </div>
                 </b-col>
