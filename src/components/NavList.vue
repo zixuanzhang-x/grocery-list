@@ -33,7 +33,7 @@
         <p></p>
         <b-collapse id="collapse-plan" v-model="visible">
           <b-list-group flush v-for="plan in plans" :key="plan.id">
-            <b-list-group-item :to="'/plan/' + plan.id">{{ plan.plan_name }}</b-list-group-item>
+            <b-list-group-item v-if="!plan.isDone" :to="'/plan/' + plan.id">{{ plan.name }}</b-list-group-item>
           </b-list-group>
         </b-collapse>
       </b-list-group-item>
