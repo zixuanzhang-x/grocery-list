@@ -52,13 +52,13 @@
                             height="4px"
                         ></b-progress>
                     </b-alert>
-                    <b-button id="dot" variant="outline-success" v-b-modal.shopping-cart-modal>
+                    <b-button id="dot" variant="outline-success" v-b-modal=modalName>
                         <b-icon style="width:30px;height:30px" icon="cart-check"></b-icon>
                     </b-button>
             </b-card>
         </b-card-group>
         <!-- shopping card modal -->
-        <b-modal id="shopping-cart-modal" ref="modal" title="You have added the following ingredients:" hide-footer>
+        <b-modal :id="modalName" ref="modal" title="You have added the following ingredients:" hide-footer>
             <b-row cols="2">
                 <b-col v-for="(unit, ingredient) in cartIngredient" :key="ingredient" class="mb-3">
                     <b-input-group v-if="unit !== 0">
@@ -66,7 +66,7 @@
                     </b-input-group>
                 </b-col>
             </b-row>
-            <b-button variant="outline-info" class="mt-3" block @click="$bvModal.hide('shopping-cart-modal')">OK</b-button>
+            <b-button variant="outline-info" class="mt-3" block @click="$bvModal.hide(modalName)">OK</b-button>
         </b-modal>
     </div>
 </template>
@@ -109,6 +109,9 @@ export default {
                 el.toLowerCase().includes(this.searchText.toLowerCase())
             )
         },
+        modalName() {
+            return this.storeName + '-shopping-cart-modal'
+        }
     },
     watch: {
         addedIngredients: function(val) {
