@@ -97,7 +97,7 @@ export default {
     },
     computed: {
         ingredients() {
-            return [].concat.apply([], this.categories.map(el => el.ingredients))
+            return [].concat.apply([], this.categories.map(el => el.ingredients)).sort()
         },
         addedIngredients() {
             const addedIngredients = {}
