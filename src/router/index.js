@@ -55,6 +55,7 @@ const routes = [
     path: "/plan/:id",
     name: "Plan",
     component: Plan,
+    props: true,
     meta: {
       requiresAuth: true,
     }
