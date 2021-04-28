@@ -25,6 +25,7 @@
           id="input-date"
           v-model="date"
           class="mb-2"
+          :min="new Date()"
           required
         ></b-form-datepicker>
       </b-form-group>
