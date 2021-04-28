@@ -6,8 +6,8 @@ import Home from "@/components/Home.vue";
 import Recipe from "@/components/Recipe.vue";
 import Calendar from "@/components/Calendar.vue";
 import History from "@/components/History.vue";
-import addStore from "@/components/addStore.vue";
 import Plan from "@/components/Plan.vue";
+import AddPlan from "@/components/AddPlan.vue";
 
 import { auth } from "@/firebaseConfig.js";
 
@@ -44,18 +44,18 @@ const routes = [
     }
   },
   {
-    path: "/plan/:id/store",
-    name: "addStore",
-    component: addStore,
+    path: "/plan/:id",
+    name: "Plan",
+    component: Plan,
+    props: true,
     meta: {
       requiresAuth: true,
     }
   },
   {
-    path: "/plan/:id",
-    name: "Plan",
-    component: Plan,
-    props: true,
+    path: "/add-plan",
+    name: "AddPlan",
+    component: AddPlan,
     meta: {
       requiresAuth: true,
     }

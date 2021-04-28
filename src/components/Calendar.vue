@@ -11,33 +11,59 @@
       </h1>
     </div>
     <hr />
-    <div ref="calendar"></div>
+    <FullCalendar :options="calendarOptions" />
   </div>
 </template>
 
 <script>
-import { Calendar } from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
+
+import { db } from "../firebaseConfig.js";
+
+const plans = db.collection("plans");
 
 export default {
+  props: ["user"],
+  components: {
+    FullCalendar,
+  },
   data() {
     return {
-      calendar: null,
+      plans: null,
     };
   },
-  mounted() {
-    this.calendar = new Calendar(this.$refs.calendar, {
-      plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
-      initialView: "dayGridMonth",
-      headerToolbar: {
-        left: "prev,next today",
-        center: "title",
-        right: "dayGridMonth,timeGridWeek,listWeek",
+  computed: {
+    calendarOptions() {
+      let events = [];
+      if (this.plans) {
+        events = this.plans.map((plan) => {
+          return {
+            title: plan.name,
+            start: plan.date,
+          };
+        });
+      }
+      return {
+        plugins: [dayGridPlugin],
+        initialView: "dayGridMonth",
+        events: events
+      }
+    },
+  },
+  watch: {
+    user: {
+      immediate: true,
+      handler(user) {
+        this.$bind("plans", plans.where("uid", "==", user.uid));
+        this.events = this.plans.map((plan) => {
+          return {
+            title: plan.name,
+            start: plan.date,
+          };
+        });
       },
-    });
-    this.calendar.render();
+    },
   },
 };
 </script>

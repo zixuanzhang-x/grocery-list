@@ -11,6 +11,8 @@
             id="datepicker-dateformat1"
             v-model="plan.date"
             locale="en"
+            :min="new Date()"
+            @input="setDate"
           ></b-form-datepicker>
         </b-col>
         <b-progress
@@ -21,7 +23,9 @@
           striped="striped"
           animated
         ></b-progress>
-        <b-button variant="success">Mark as Completed</b-button>
+        <b-button variant="success" @click="completePlan"
+          >Mark as Completed</b-button
+        >
       </b-row>
     </b-container>
 
@@ -51,7 +55,7 @@
                       <span>{{ item }}</span>
                       {{ " " }}
                       <b-badge variant="success">{{
-                        itemInfo.quantity + " kg"
+                        itemInfo.quantity + " unit"
                       }}</b-badge>
                     </b-form-checkbox>
                   </div>
@@ -68,7 +72,7 @@
                     >
                       <span class="bought">{{ item }}</span>
                       {{ " " }}
-                      <b-badge>{{ itemInfo.quantity }}</b-badge>
+                      <b-badge>{{ itemInfo.quantity + " unit" }}</b-badge>
                     </b-form-checkbox>
                   </div>
                 </b-col>
@@ -102,9 +106,23 @@ export default {
   },
   methods: {
     checkItem(store, item) {
-      this.plan.stores[store].items[item].isBought = !this.plan.stores[store].items[item].isBought 
-      db.collection("plans").doc(this.plan.id).set(this.plan)
-      console.log(store, this.plan.stores[store].items[item].isBought);
+      this.plan.stores[store].items[item].isBought = !this.plan.stores[store]
+        .items[item].isBought;
+      db.collection("plans")
+        .doc(this.plan.id)
+        .set(this.plan);
+    },
+    setDate() {
+      db.collection("plans")
+        .doc(this.plan.id)
+        .set(this.plan);
+    },
+    completePlan() {
+      this.plan.isDone = true;
+      db.collection("plans")
+        .doc(this.plan.id)
+        .set(this.plan);
+      this.$router.push({ path: '/history' })
     },
   },
   watch: {
@@ -117,11 +135,11 @@ export default {
     plan: {
       immediate: true,
       handler(plan) {
+        // update progress bar
         let allItemsCount = 0;
         let boughtItemsCount = 0;
         for (const store in plan.stores) {
           for (const item in plan.stores[store].items) {
-            console.log(plan.stores[store].items[item]);
             allItemsCount++;
             if (plan.stores[store].items[item].isBought) {
               boughtItemsCount++;
@@ -158,7 +176,6 @@ export default {
 .plan-body {
   /* border: 1px solid red; */
   margin-top: 5px;
-
 }
 
 .bought {

@@ -35,6 +35,11 @@
           <b-list-group flush v-for="plan in plans" :key="plan.id">
             <b-list-group-item v-if="!plan.isDone" :to="'/plan/' + plan.id">{{ plan.name }}</b-list-group-item>
           </b-list-group>
+          <b-list-group flush>
+            <b-list-group-item to="/add-plan">
+            <b-icon icon="journal-plus"></b-icon>
+            Add Plan</b-list-group-item>
+          </b-list-group>
         </b-collapse>
       </b-list-group-item>
     </b-list-group>
