@@ -7,14 +7,14 @@
                         <template #append>
                             <b-button 
                                 variant="outline-success"
-                                v-b-tooltip.hover title="Add 0.5 kg/time"
+                                v-b-tooltip.hover title="Add 0.5 unit/time"
+                                :pressed="!disableReduce(ingredient)"
                                 @click="add(ingredient)"
                             >
                                 <b-icon icon="plus-circle"></b-icon>
                             </b-button>
                             <b-button 
                                 variant="outline-danger" 
-                                v-b-tooltip.hover title="Reduce 0.5 kg/time"
                                 :disabled="disableReduce(ingredient)"
                                 @click="reduce(ingredient)"
                             >
