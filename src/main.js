@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import { firestorePlugin } from "vuefire"; // Added to make vuefire work
 import { auth } from "./firebaseConfig.js"; // for authentication
-import { BootstrapVue, IconsPlugin, TabsPlugin, ProgressPlugin, LayoutPlugin, FormDatepickerPlugin } from 'bootstrap-vue'
+import { BootstrapVue, IconsPlugin, TabsPlugin, ProgressPlugin, LayoutPlugin, FormDatepickerPlugin, CollapsePlugin, BadgePlugin } from 'bootstrap-vue'
 
 import "@/assets/global.css";
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -20,6 +20,8 @@ Vue.use(TabsPlugin);
 Vue.use(ProgressPlugin)
 Vue.use(LayoutPlugin)
 Vue.use(FormDatepickerPlugin)
+Vue.use(CollapsePlugin)
+Vue.use(BadgePlugin)
 
 // eslint-disable-next-line no-unused-vars
 export const loadedGoogleMapsAPI = new Promise((resolve, reject) => {
