@@ -6,7 +6,8 @@
         <b-col cols="8">
           <p>{{ plan.name }}</p>
         </b-col>
-        <b-col cols="4">
+        <b-col 
+        cols="4">
           <b-form-datepicker
             id="datepicker-dateformat1"
             v-model="plan.date"
@@ -15,20 +16,35 @@
             @input="setDate"
           ></b-form-datepicker>
         </b-col>
-        <b-progress
-          :value="boughtItemsCount"
-          :max="allItemsCount"
-          class="w-25"
-          variant="success"
-          striped="striped"
-          animated
-        ></b-progress>
-        <b-button variant="success" @click="completePlan"
-          >Mark as Completed</b-button
+      </b-row>
+      <b-row>
+        <b-col cols="8">
+          <b-progress
+            :max="allItemsCount"
+            variant="success"
+            height="1.7rem"
+          >
+            <b-progress-bar :value="boughtItemsCount">
+              <span>
+                <strong
+                  >{{ boughtItemsCount }} / {{ allItemsCount }} Items
+                  Bought</strong
+                ></span
+              >
+            </b-progress-bar>
+          </b-progress>
+        </b-col>
+        <b-col class="text-right"
+          ><b-button variant="success" @click="completePlan" size="sm"
+            ><b-icon
+              icon="check2-circle"
+            ></b-icon
+            > Complete</b-button
+          ></b-col
         >
       </b-row>
     </b-container>
-
+    <hr />
     <!-- store tabs and ingredients -->
     <div class="plan-body">
       <b-tabs content-class="mt-3">
@@ -80,6 +96,7 @@
             </b-container>
 
             <!-- Add Ingredient -->
+              <br>
             <div>
               <b-button v-b-toggle="'store-' + index" variant="primary"
                 >Add Ingredients</b-button
@@ -138,7 +155,7 @@ export default {
       db.collection("plans")
         .doc(this.plan.id)
         .set(this.plan);
-      this.$router.push({ path: '/history' })
+      this.$router.push({ path: "/history" });
     },
   },
   watch: {
@@ -178,20 +195,10 @@ export default {
   background-color: white;
 }
 
-.plan-head {
-  /* border: 1px solid green; */
-  margin-left: 20px;
-}
-
 .plan-head p {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-}
-
-.plan-body {
-  /* border: 1px solid red; */
-  margin-top: 5px;
 }
 
 .bought {

@@ -1,6 +1,6 @@
 <template>
     <div class="add-ingredient">
-        <b-card-group deck>
+         <b-card-group deck>
             <b-card>
                 <b-form-input type="text" placeholder="Search ingredients..." v-model="searchText"></b-form-input>
                     <b-tabs pills card vertical id="category-menu">
@@ -34,7 +34,7 @@
                             <Ingredient :categoryId="category.id" :addedIngredients="addedIngredients" :searchedIngredients="searchedIngredients"/>
                         </b-tab>
                     </b-tabs>
-                    <b-button id="submit-plan" variant="outline-danger" @click="submitPlan">Submit Store Plan</b-button>
+                    <b-button id="submit-plan" variant="success" @click="submitPlan">Add to Store</b-button>
                     <!-- No ingredients alert -->
                     <b-alert
                         :show="dismissCountDown"
@@ -174,19 +174,12 @@ export default {
                     })
                 }
             });
-            // TODO: redirect to this store plan tab
         },
     },
 }
 </script>
 
 <style scoped>
-.add-ingredient {
-    margin: 15px;
-    padding: 30px;
-    border-radius: 15px;
-    background-color: white;
-}
 
 #dot {
     height: 55px;
@@ -217,5 +210,9 @@ export default {
     position: absolute;
     bottom: 10px;
     height: 45px;
+}
+
+input[type="text"]:disabled {
+  background: white;
 }
 </style>

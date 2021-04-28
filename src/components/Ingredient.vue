@@ -66,3 +66,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+input[type="text"]:disabled {
+  background: white;
+}
+</style>
