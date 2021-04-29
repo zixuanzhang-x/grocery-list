@@ -50,6 +50,7 @@ const routes = [
     name: "Plan",
     component: Plan,
     props: true,
+
     meta: {
       requiresAuth: true,
     }

@@ -78,11 +78,24 @@
                 </b-col>
               </b-row>
             </b-container>
+
+            <!-- Add Ingredient -->
+            <div>
+              <b-button v-b-toggle="'store-' + index" variant="primary"
+                >Add Ingredients</b-button
+              >
+              <b-collapse :id="'store-' + index" class="mt-2">
+                <addIngredient :planId="plan.id" :storeName="store" />
+              </b-collapse>
+            </div>
           </b-tab>
         </div>
 
+        <!-- Add Store -->
         <div>
-          <b-tab v-if="plan.stores" title="Add Store"> </b-tab>
+          <b-tab v-if="plan.stores" title="Add Store">
+            <addStore :planId="plan.id" />
+          </b-tab>
         </div>
       </b-tabs>
     </div>
@@ -91,12 +104,15 @@
 
 <script>
 import { db } from "../firebaseConfig.js";
+import addStore from "@/components/addStore.vue";
+import addIngredient from "@/components/addIngredient.vue";
 
 const plans = db.collection("plans");
 
 export default {
   name: "Plan",
   props: ["id"],
+  components: { addStore, addIngredient },
   data() {
     return {
       plan: { name: "" },
