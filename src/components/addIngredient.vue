@@ -173,7 +173,10 @@ export default {
                         stores: stores
                     })
                 }
-            });
+            })
+
+            // Clear all ingredient unit
+            Object.keys(this.cartIngredient).forEach(el => this.cartIngredient[el]=0)
         },
     },
 }

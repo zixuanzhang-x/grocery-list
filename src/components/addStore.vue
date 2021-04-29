@@ -208,8 +208,20 @@ export default {
       db.collection('plans').doc(this.planId).update({
           stores: stores
       })
-      // redirect to this store tab
-      this.$route.push({name: 'Plan', params: {id: this.planId}})
+
+      // Reset google maps, autocomplete, store name, and vincinity
+      loadedGoogleMapsAPI.then(() => {
+        const google = window.google
+        // eslint-disable-next-line no-unused-vars
+        var map = new google.maps.Map(this.$refs['map'], {
+          zoom: 14,
+          center: new google.maps.LatLng(this.latitude, this.longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        })
+      })
+      this.storeName = ''
+      this.storeVicinity = ''
+      document.getElementById('autocomplete').value = ''
     },
   },
 }
