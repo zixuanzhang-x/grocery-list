@@ -1,6 +1,6 @@
 <template>
     <div class="add-ingredient">
-         <b-card-group deck>
+        <b-card-group deck>
             <b-card>
                 <b-form-input type="text" placeholder="Search ingredients..." v-model="searchText"></b-form-input>
                     <b-tabs pills card vertical id="category-menu">
@@ -175,7 +175,7 @@ export default {
                 }
             })
 
-            // Clear all ingredient unit
+            // Reset cart ingredient
             Object.keys(this.cartIngredient).forEach(el => this.cartIngredient[el]=0)
         },
     },
@@ -183,7 +183,6 @@ export default {
 </script>
 
 <style scoped>
-
 #dot {
     height: 55px;
     width: 55px;
@@ -201,14 +200,6 @@ export default {
     background-color: #bee5eb;
 }
 
-#choose-ingredient {
-    margin: 15px;
-    padding: 30px;
-    border-radius: 15px;
-    background-color:  #bee5eb;
-    position: relative;
-}
-
 #submit-plan {
     position: absolute;
     bottom: 10px;
@@ -216,6 +207,6 @@ export default {
 }
 
 input[type="text"]:disabled {
-  background: white;
+    background: white;
 }
 </style>
