@@ -215,7 +215,7 @@ export default {
       immediate: true,
       handler(user) {
         if (user) {
-          this.$bind("plans", plans.where("uid", "==", user.uid));
+          this.$bind("plans", plans.where("uid", "==", user.uid).where("isDone", "==", false));
         }
       },
     },
