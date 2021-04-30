@@ -82,14 +82,20 @@ import { db } from "@/firebaseConfig.js";
 
 export default {
   name: "History",
+  props: ["user"],
   data() {
     return {
       plans: [],
     };
   },
 
-  firestore: {
-    plans: db.collection("plans").where("isTemplate", "==", true),
+  watch: {
+    user: {
+      immediate: true,
+      handler(user) {
+        this.$bind("plans", this.plans.where("uid", "==", user.uid).where("isTemplate", "==", true));
+      },
+    },
   },
 
   methods: {
