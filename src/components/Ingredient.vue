@@ -69,6 +69,6 @@ export default {
 
 <style scoped>
 input[type="text"]:disabled {
-  background: white;
+    background: white;
 }
 </style>

@@ -110,7 +110,13 @@ export default {
         })
 
         this.displayingMap = true
-        // Bound to fit all markers
+        this.fitBoundsMarkers(google, map)
+        this.setAutoComplete(google, map, infoWindow)
+        this.displayMarkers(google, map, infoWindow)
+      })
+    },
+    fitBoundsMarkers(google, map) {
+      loadedGoogleMapsAPI.then(() => {
         if (this.stores.length != 0) {
           const latlng = this.stores.map(el => 
             new google.maps.LatLng(el.geometry.location.lat, el.geometry.location.lng)
@@ -121,7 +127,10 @@ export default {
           }
           map.fitBounds(latlngbounds)
         }
-        // Set autocomplete input
+      })
+    },
+    setAutoComplete(google, map, infoWindow) {
+      loadedGoogleMapsAPI.then(() => {
         const input = document.getElementById('autocomplete')
         const center = { lat: this.latitude, lng: this.longitude }
         const defaultBounds = {
@@ -169,8 +178,10 @@ export default {
             this.storeVicinity = address
           }
         })
-
-        // Display all markers
+      })
+    },
+    displayMarkers(google, map, infoWindow) {
+      loadedGoogleMapsAPI.then(() => {
         this.stores.forEach(el => {
           const marker = new google.maps.Marker({
             position: new google.maps.LatLng(el.geometry.location.lat, el.geometry.location.lng),
@@ -208,8 +219,20 @@ export default {
       db.collection('plans').doc(this.planId).update({
           stores: stores
       })
-      // redirect to this store tab
-      this.$route.push({name: 'Plan', params: {id: this.planId}})
+
+      // Reset google maps, autocomplete, store name, and vincinity
+      loadedGoogleMapsAPI.then(() => {
+        const google = window.google
+        // eslint-disable-next-line no-unused-vars
+        var map = new google.maps.Map(this.$refs['map'], {
+          zoom: 14,
+          center: new google.maps.LatLng(this.latitude, this.longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        })
+      })
+      this.storeName = ''
+      this.storeVicinity = ''
+      document.getElementById('autocomplete').value = ''
     },
   },
 }
