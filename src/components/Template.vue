@@ -93,7 +93,7 @@ export default {
     user: {
       immediate: true,
       handler(user) {
-        this.$bind("plans", this.plans.where("uid", "==", user.uid).where("isTemplate", "==", true));
+        this.$bind("plans", db.collection("plans").where("uid", "==", user.uid).where("isTemplate", "==", true));
       },
     },
   },
@@ -114,6 +114,7 @@ export default {
         stores: stores,
         isTemplate: false,
         isDone: false,
+        uid: this.user.uid,
         date: "",
       };
 

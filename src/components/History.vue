@@ -108,7 +108,7 @@ export default {
     user: {
       immediate: true,
       handler(user) {
-        this.$bind("plans", this.plans.where("uid", "==", user.uid).where("isDone", "==", true));
+        this.$bind("plans", db.collection("plans").where("uid", "==", user.uid).where("isDone", "==", true));
       },
     },
   },
