@@ -6,8 +6,7 @@
         <b-col cols="8">
           <p>{{ plan.name }}</p>
         </b-col>
-        <b-col 
-        cols="4">
+        <b-col cols="4">
           <b-form-datepicker
             id="datepicker-dateformat1"
             v-model="plan.date"
@@ -19,11 +18,7 @@
       </b-row>
       <b-row>
         <b-col cols="8">
-          <b-progress
-            :max="allItemsCount"
-            variant="success"
-            height="1.7rem"
-          >
+          <b-progress :max="allItemsCount" variant="success" height="1.7rem">
             <b-progress-bar :value="boughtItemsCount">
               <span>
                 <strong
@@ -36,10 +31,7 @@
         </b-col>
         <b-col class="text-right"
           ><b-button variant="success" @click="completePlan" size="sm"
-            ><b-icon
-              icon="check2-circle"
-            ></b-icon
-            > Complete</b-button
+            ><b-icon icon="check2-circle"></b-icon> Complete</b-button
           ></b-col
         >
       </b-row>
@@ -59,7 +51,9 @@
 
             <b-container>
               <b-row style="margin: 2px">
-                <h3>Address: {{ storeInfo.address }}</h3>
+                <p class="address">
+                  Address: {{ storeInfo.address }}
+                </p>
               </b-row>
               <b-row>
                 <!-- unchecked items -->
@@ -99,7 +93,7 @@
             </b-container>
 
             <!-- Add Ingredient -->
-            <br>
+            <br />
             <div>
               <b-button v-b-toggle="'store-' + index" variant="primary"
                 >Add Ingredients</b-button
@@ -207,5 +201,11 @@ export default {
 .bought {
   text-decoration: line-through;
   color: grey;
+}
+
+.address {
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 0px 7px;
 }
 </style>
