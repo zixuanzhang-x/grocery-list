@@ -195,7 +195,6 @@ export default {
   },
   methods: {
     addIngredients(ingredients, index) {
-      // console.log(ingredients)
       const plan = this.plans.filter(plan => plan.id == this.selectedPlanId)[0];
 
       ingredients.forEach((ingredient) => {
