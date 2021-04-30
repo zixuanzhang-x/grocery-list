@@ -7,7 +7,6 @@ import Recipe from "@/components/Recipe.vue";
 import Calendar from "@/components/Calendar.vue";
 import History from "@/components/History.vue";
 import Template from "@/components/Template.vue";
-import addStore from "@/components/addStore.vue";
 import Plan from "@/components/Plan.vue";
 import AddPlan from "@/components/AddPlan.vue";
 
@@ -59,14 +58,6 @@ const routes = [
     path: "/template",
     name: "Template",
     component: Template,
-    meta: {
-      requiresAuth: true,
-    }
-  },
-  {
-    path: "/plan/:id/store",
-    name: "addStore",
-    component: addStore,
     meta: {
       requiresAuth: true,
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <NavList />
+    <NavList :user="user"/>
   </div>
 </template>
 
@@ -9,6 +9,7 @@ import NavList from "@/components/NavList";
 
 export default {
   name: "Menu",
+  props: ["user"],
   components: { NavList },
 };
 </script>

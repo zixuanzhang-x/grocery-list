@@ -2,13 +2,13 @@
   <div id="app">
     <Navbar v-if="user" @signOut="user = null" />
     <div class="row">
-      <Sidebar />
+      <Sidebar :user="user"/>
       <div
         v-if="user && windowWidth >= 768"
         class="col"
         id="menu-container"
       >
-        <Menu />
+        <Menu :user="user" />
       </div>
       <div class="col">
         <router-view :user="user" />

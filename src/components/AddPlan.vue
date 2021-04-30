@@ -42,6 +42,7 @@ import { db } from "../firebaseConfig.js";
 
 export default {
   name: "AddPlan",
+  props: ["user"],
   data() {
     return {
       name: "",
@@ -58,6 +59,7 @@ export default {
           date: this.date,
           isDone: false,
           isTemplate: false,
+          uid: this.user.uid,
           stores: {},
         })
         .then(function(docRef) {

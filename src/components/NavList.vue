@@ -51,16 +51,21 @@ import { db } from "../firebaseConfig.js";
 
 export default {
   name: "NavList",
+  props: ["user"],
   data() {
     return {
       visible: true,
       plans: [],
     };
   },
-
-  firestore: {
-    plans: db.collection("plans"),
-  },
+  watch: {
+    user: {
+      immediate: true,
+      handler(user) {
+        this.$bind("plans", db.collection("plans").where("uid", "==", user.uid));
+      }
+    }
+  }
 };
 </script>
 

@@ -9,7 +9,7 @@
       shadow
       no-slide
     >
-      <NavList />
+      <NavList :user="user"/>
     </b-sidebar>
   </div>
 </template>
@@ -19,6 +19,7 @@ import NavList from "@/components/NavList";
 
 export default {
   name: "Sidebar",
+  props: ["user"],
   components: { NavList },
 };
 </script>
