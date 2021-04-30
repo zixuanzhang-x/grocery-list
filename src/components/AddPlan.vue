@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     addPlan() {
-      console.log(this.name, this.date);
       const vue = this;
       db.collection("plans")
         .add({
@@ -63,7 +62,6 @@ export default {
           stores: {},
         })
         .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
           vue.$router.push({ path: `/plan/${docRef.id}` })
         })
         .catch(function(error) {

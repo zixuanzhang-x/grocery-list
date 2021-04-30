@@ -1,10 +1,6 @@
 <template>
   <div>
     <b-list-group flush>
-      <b-list-group-item to="/search">
-        <b-icon icon="search"></b-icon>
-        Search
-      </b-list-group-item>
       <b-list-group-item to="/recipe">
         <b-icon icon="book"></b-icon>
         Recipe
