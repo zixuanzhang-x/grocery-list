@@ -20,7 +20,7 @@ export default {
         .signInWithRedirect(provider)
         .then(() => {
           // this.user = response.user;
-          this.$router.push("recipe")
+          this.$router.push("calendar")
         })
         .catch((error) => console.log(error));
     },

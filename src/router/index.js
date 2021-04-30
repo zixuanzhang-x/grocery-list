@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !auth.currentUser) {
     next("/");
   } else if (!requiresAuth && auth.currentUser) {
-    next("/recipe");
+    next("/calendar");
   } else {
     next();
   }

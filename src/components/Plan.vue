@@ -58,6 +58,9 @@
             <!-- progress bar -->
 
             <b-container>
+              <b-row style="margin: 2px">
+                <h3>Address: {{ storeInfo.address }}</h3>
+              </b-row>
               <b-row>
                 <!-- unchecked items -->
                 <b-col>
