@@ -96,7 +96,7 @@
             </b-container>
 
             <!-- Add Ingredient -->
-              <br>
+            <br>
             <div>
               <b-button v-b-toggle="'store-' + index" variant="primary"
                 >Add Ingredients</b-button
