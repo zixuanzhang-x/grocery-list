@@ -6,7 +6,7 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 * Team Name: Lemon Squeezy
 * App Name: Grocery List
-* App Link: <https://TODO.firebaseapp.com/>
+* App Link: https://csci-project-2-cde6c.web.app/
 
 ### Students
 
@@ -20,7 +20,9 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-* ...
+* Designed a multilevel nested document data model to simplify data retrival (firestore data retrival is shallow by default)
+
+* Integrated different components into a smooth user flow
 
 Which (if any) device integration(s) does your app support?
 
@@ -52,17 +54,20 @@ See [link](https://drive.google.com/file/d/1BvZ7-dE-7PnKUyst7JXlUA_u8xhhkbsj/vie
 **[Add a screenshot of each key page](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
 along with a very brief caption:**
 
-![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
+![Shopping Plan Page](/doc/images/plan.png)
+![Add store with google maps api](/doc/images/add-store-1.png)
+![Shopping Plan History Page](/doc/images/history.png)
+![Recipe Page](/doc/images/recipe.png)
 
-
+For all 10 screenshots, go to /doc/images folder.
 
 ## External Dependencies
 
 **Document integrations with 3rd Party code or services here.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
-* Library or service name: description of use
-* ...
+* fullcalendar: provide a nice calendar view
+* bootstrap-vue: provide nice styling for common ui components 
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that
