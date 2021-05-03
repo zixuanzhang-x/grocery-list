@@ -31,7 +31,7 @@
               size="sm"
               style="font-size:15px"
               class="btn"
-              >Mark as Template</b-button
+              >Add to Template</b-button
             >
             <b-button
               v-if="plan.isTemplate == true"
@@ -41,7 +41,7 @@
               size="sm"
               style="font-size:15px"
               class="btn"
-              >Cancel Template</b-button
+              >Remove from Template</b-button
             >
             <b-button
               @click="delPlan(plan)"
