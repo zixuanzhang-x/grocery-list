@@ -10,7 +10,7 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 ### Students
 
-* Zixuan Zhang, zhan7230@umn.edi
+* Zixuan Zhang, zhan7230@umn.edu
 * Zhaoyu Wang, wang9535@umn.edu
 * Ziying Cheng, cheng904@umn.edu
 
@@ -26,7 +26,7 @@ CSCI 5117, Spring 2021, [assignment description](https://canvas.umn.edu/courses/
 
 Which (if any) device integration(s) does your app support?
 
-* ...
+* Integrated Google Maps into Add Store component to support searching any nearby stores
 
 Which (if any) progressive web app feature(s) does your app support?
 
@@ -67,7 +67,8 @@ For all 10 screenshots, go to /doc/images folder.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
 * fullcalendar: provide a nice calendar view
-* bootstrap-vue: provide nice styling for common ui components 
+* bootstrap-vue: provide nice styling for common ui components
+* axios: send requests to Google Maps Platform API
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that
