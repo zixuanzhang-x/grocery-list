@@ -9,7 +9,7 @@
 * Integrated Google Maps into Add Store component to support searching any nearby stores
 
 
-## Previews
+## Design Mockup
 ![mockup image](mockup_image.PNG)
 
 See [link](https://drive.google.com/file/d/1BvZ7-dE-7PnKUyst7JXlUA_u8xhhkbsj/view?usp=sharing) for a PDF copy of the mockup images.
